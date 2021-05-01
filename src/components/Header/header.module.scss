@@ -1,0 +1,50 @@
+.headerContainer {
+  background: var(--white);
+  height: 6rem;
+
+  display: flex;
+  align-items: center;
+
+  padding: 2rem 3rem;
+
+  border-bottom: 1px solid var(--gray-100);
+
+  img {
+    width: 80px;
+    height: auto;
+  }
+
+  strong {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+
+    cursor: pointer;
+  }
+
+  p {
+    margin-left: 2rem;
+    padding: 0.25rem 0.25rem 2rem;
+    border-left: 1px solid var(--gray-100);
+
+    @media (max-width: 650px) {
+      margin: 15px 0;
+      margin-left: 0;
+      padding: 0;
+      border-left: 0;
+    }
+  }
+
+  span {
+    margin-left: auto;
+
+    @media (max-width: 650px) {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 650px) {
+    flex-direction: column;
+
+    height: auto;
+  }
+}
