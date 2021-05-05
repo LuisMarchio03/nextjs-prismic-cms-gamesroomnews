@@ -33,7 +33,7 @@
     h1 {
       font-size: 2.2rem;
 
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       margin-bottom: 3rem;
 
       color: var(--gray-800);
@@ -70,13 +70,20 @@
   }
 
   .description {
-    font-size: 1.06rem;
-
     margin-top: 2rem;
     line-height: 1.9rem;
     color: var(--gray-600);
     margin: 1.5rem 0;
 
     text-align: justify;
+
+    h3 {
+      margin: 2.2rem 0;
+    }
+
+    p {
+      font-size: 1.09rem;
+      line-height: 2.3rem;
+    }
   }
 }

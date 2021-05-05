@@ -44,7 +44,7 @@ export default function news({ post }) {
               "heading2" ||
               "heading3" ||
               "heading4" ? (
-              <h2>{content.text}</h2>
+              <h3>{content.text}</h3>
             ) : content.spans.type == "hyperlink" ? (
               <a href={content.spans.data.url}>{content.text}</a>
             ) : (
@@ -98,6 +98,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       post,
     },
-    revalidate: 60 * 60 * 8, // 8 hours
+    revalidate: 60 * 60 * 3, // 3 hours
   };
 };
