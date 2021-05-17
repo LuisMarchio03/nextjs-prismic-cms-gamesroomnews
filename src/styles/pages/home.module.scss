@@ -2,6 +2,15 @@
   width: 100%;
   height: 100vh;
 
+  .divisorBorder {
+    width: 100%;
+    height: 1px;
+
+    margin-top: 3.4rem;
+
+    background-color: var(--green-500);
+  }
+
   .latestNews {
     display: flex;
     flex-wrap: wrap;

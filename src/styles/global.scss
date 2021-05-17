@@ -40,7 +40,7 @@
 }
 
 body {
-  background: var(--gray-50);
+  background: var(--gray-100);
 }
 
 body,
@@ -48,7 +48,7 @@ input,
 textarea,
 button {
   font: 500 1rem Inter, sans-serif;
-  color: var(--gray-500);
+  color: var(--gray-800);
 }
 
 h1,
@@ -72,4 +72,8 @@ h2 {
 
 button {
   cursor: pointer;
+}
+
+article {
+  background: var(--gray-50);
 }
