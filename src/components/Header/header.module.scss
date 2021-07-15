@@ -42,6 +42,24 @@
     }
   }
 
+  .links {
+    font-size: 1.5rem;
+    margin-left: 2rem;
+
+    > span {
+      margin-left: 1rem;
+
+      @media (max-width: 650px) {
+        margin: 0 0.8rem;
+      }
+    }
+
+    @media (max-width: 650px) {
+      margin-left: 0;
+      margin: 0.6rem;
+    }
+  }
+
   @media (max-width: 650px) {
     flex-direction: column;
 

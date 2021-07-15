@@ -104,8 +104,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params;
   const post = await prismic.getByUID("blog_pots", String(slug), {});
 
-  console.log(post);
-
   return {
     props: {
       post,
