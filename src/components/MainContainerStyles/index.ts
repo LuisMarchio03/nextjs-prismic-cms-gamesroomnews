@@ -8,7 +8,7 @@ export const MainContainer = styled.main`
     flex-direction: column;
   }
 
-  .buttonContainer {
+  .buttonNextPageContainer {
     padding-left: 5rem;
 
     @media (max-width: 980px) {

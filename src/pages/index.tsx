@@ -84,7 +84,7 @@ export default function Home({ allEpisodes, postsPagination }) {
         )
       })}
 
-      <div className="buttonContainer">
+      <div className="buttonNextPageContainer">
         {nextPage && (
           <Button type="button" onClick={handleNextPage}>
             Carregar mais posts
