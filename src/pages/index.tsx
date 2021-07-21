@@ -1,88 +1,137 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { useState } from "react";
+
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+
 import Prismic from "@prismicio/client";
 import { getPrismicClient } from "../services/prismic";
-import { format, parseISO } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
-import styles from "../styles/pages/home.module.scss";
-export default function Home({ latestEpisodes, allEpisodes }) {
+
+// Components styles - MainContainer
+import { MainContainer } from '../components/MainContainerStyles';
+
+// Components styles - Card
+import { CardContainer } from '../components/CardStyles';
+
+// Components styles - Aside
+import { AsideContainer } from '../components/AsideStyles';
+
+// Components styles - Button
+import { Button } from "../components/ButtonStyles";
+
+// React-Icons
+import { FaDiscord } from 'react-icons/fa';
+import { AiFillInstagram } from 'react-icons/ai';
+import { AiFillFacebook } from 'react-icons/ai';
+import { SiTiktok } from 'react-icons/si';
+
+type Posts = {
+  id: string;
+  uid: string;
+  data: {
+    title: {
+      text: string;
+    };
+    thumbnail: {
+      url: string;
+    };
+    content: {
+      text: string;
+    };
+  }
+}
+
+export default function Home({ allEpisodes, postsPagination }) {
+  const [posts, setPosts] = useState<Posts[]>(allEpisodes);
+  const [nextPage, setNextPage] = useState(postsPagination);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  async function handleNextPage() {
+    if (currentPage !== 1 && nextPage === null) {
+      return;
+    }
+
+    const postsResults = await fetch(`${nextPage}`).then(response =>
+      response.json()
+    );
+
+    const newPosts = postsResults.results;
+
+    setNextPage(postsResults.next_page);
+    setCurrentPage(postsResults.page);
+    setPosts([...posts, ...newPosts]);
+  }
+
   return (
-    <>
-      <div className={styles.HomeContainer}>
-        <Head>
-          <title>Home | GamesRoomNews</title>
-        </Head>
-        <section className={styles.latestNews}>
-          <strong>Últimos posts</strong>
-          <div className={styles.flex}>
-            {latestEpisodes.map((post) => (
-              <div className={styles.latestCard} key={post.id}>
-                <Link href={`/news/${post.uid}`}>
-                  <img
-                    src={`${post.data.thumbnail.url}`}
-                    alt={post.data.title[0].text}
-                  />
-                </Link>
-                <Link href={`/news/${post.uid}`}>
-                  <h2>
-                    {post.data.title[0].text} -{" "}
-                    {format(parseISO(post.data.release_date), "dd/MM/yyyy", {
-                      locale: ptBR,
-                    })}
-                  </h2>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-        <div className={styles.divisorBorder}></div>
-        <section className={styles.allNews}>
-          <div className={styles.alignStongs}>
-            <strong>Todos os posts</strong>
-          </div>
-          {allEpisodes.map((post) => (
-            <div className={styles.allCard} key={post.id}>
-              <Link href={`/news/${post.uid}`}>
-                <img
-                  src={`${post.data.thumbnail.url}`}
-                  alt={post.data.title[0].text}
-                />
-              </Link>
-              <div>
-                <Link href={`/news/${post.uid}`}>
-                  <h2>
-                    {post.data.title[0].text} -{" "}
-                    {format(parseISO(post.data.release_date), "dd/MM/yyyy", {
-                      locale: ptBR,
-                    })}
-                  </h2>
-                </Link>
-                <Link href={`/news/${post.uid}`}>
-                  <p>{post.data.content[0].text.substr(0, 300)}...</p>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </section>
+    <MainContainer>
+    <section>
+      {posts.map((post) => {
+        return (
+          <CardContainer key={post.id}>
+            <Link href={`/news/${post.uid}`}>
+              <h2>{post.data.title[0].text}</h2>
+            </Link>
+            <Link href={`/news/${post.uid}`}>
+              <img
+                src={`${post.data.thumbnail.url}`}
+                alt={post.data.title[0].text}
+              />
+            </Link>
+            <Link href={`/news/${post.uid}`}>
+              <p>{post.data.content[0].text.substr(0, 300)}...</p>
+            </Link>
+          </CardContainer>
+        )
+      })}
+
+      <div className="buttonContainer">
+        {nextPage && (
+          <Button type="button" onClick={handleNextPage}>
+            Carregar mais posts
+          </Button>
+        )}
       </div>
-    </>
+    </section>
+
+    <AsideContainer>
+      <h2>Acompanhe tambem...</h2>
+      <div>
+        <Link href="https://discord.com/invite/9WrEqqqchu">
+          <a target="_blank"><FaDiscord className="discord" /></a>
+        </Link>
+
+        <Link href="https://www.instagram.com/gamesroom_news/">
+          <a target="_blank"><AiFillInstagram className="instagram" /></a>
+        </Link>
+
+        <Link href="https://www.facebook.com/Games-Room-News-116963500309195">
+          <a target="_blank"><AiFillFacebook  className="facebook" /></a>
+        </Link>
+
+        <Link href="https://www.tiktok.com/@gamesroomnews?lang=pt-BR">
+          <a target="_blank"><SiTiktok className="tiktok" /></a>
+        </Link>
+      </div>
+    </AsideContainer>
+  </MainContainer>
   );
 }
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
   const postResponse = await prismic
     .query([Prismic.Predicates.at("document.type", "blog_pots")], {
-      pageSize: 20,
+      pageSize: 5,
       orderings: "[document.last_publication_date desc]",
     })
     .then((respostaEmObjeto) => respostaEmObjeto);
-  const latestEpisodes = postResponse.results.slice(0, 2);
-  const allEpisodes = postResponse.results.slice(2, 100);
+
+  const allEpisodes = postResponse.results;
+  const postsPagination = postResponse.next_page;
+  
   return {
     props: {
-      latestEpisodes,
       allEpisodes,
+      postsPagination,
     },
     revalidate: 1800,
   };

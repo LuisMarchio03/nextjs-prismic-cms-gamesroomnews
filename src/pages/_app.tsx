@@ -1,13 +1,13 @@
-import Header from "../components/Header";
-
-import "../styles/global.scss";
+import { Header } from "../Layout/Header";
+import GlobalStyles from "../styles/globalStyles";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <main>
+    <>
+      <GlobalStyles />
       <Header />
       <Component {...pageProps} />
-    </main>
+    </>
   );
 }
 

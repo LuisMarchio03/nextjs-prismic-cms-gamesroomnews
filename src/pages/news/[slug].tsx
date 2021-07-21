@@ -3,7 +3,7 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-import { RichText, RichTextBlock } from "prismic-reactjs";
+import { RichText } from "prismic-reactjs";
 import Prismic from "@prismicio/client";
 import { getPrismicClient } from "../../services/prismic";
 
@@ -14,7 +14,7 @@ import { ImHome } from "react-icons/im";
 import { MdDateRange } from "react-icons/md";
 import { BiUser } from "react-icons/bi";
 
-import styles from "../../styles/pages/news.module.scss";
+import { Article } from '../../styles/newsStyles';
 
 export default function news({ post }) {
   return (
@@ -36,29 +36,29 @@ export default function news({ post }) {
         <meta property="og:image:type" content="image/png" />
       </Head>
 
-      <article className={styles.news}>
-        <div className={styles.returnHome}>
+      <Article className="news">
+        <div className="returnHome">
           <Link href="/">
             <p>
               <ImHome /> Voltar para Página Inicial
             </p>
           </Link>
         </div>
-        <div className={styles.thumbnailContainer}>
+        <div className="thumbnailContainer">
           <img
             src={`${post.data.thumbnail.url}`}
             alt={post.data.title[0].text}
           />
         </div>
-        <div className={styles.cardPost}>
+        <div className="cardPost">
           <header>
             <h1>{post.data.title[0].text}</h1>
           </header>
 
-          <div className={styles.borderDiv} />
+          <div className="borderDiv" />
 
           <main>
-            <div className={styles.description}>
+            <div className="description">
               {RichText.render(post.data.content)}
             </div>
           </main>
@@ -74,7 +74,7 @@ export default function news({ post }) {
             </span>
           </footer>
         </div>
-      </article>
+      </Article>
     </>
   );
 }
