@@ -15,7 +15,7 @@ export const Article = styled.article`
     cursor: pointer;
 
     font-size: 1.2rem;
-    color: var(--purple-300);
+    color: ${props => props.theme.color.purple300};
   }
 
   .thumbnailContainer {
@@ -32,7 +32,7 @@ export const Article = styled.article`
 
   header {
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--gray-100);
+    border-bottom: 1px solid ${props => props.theme.color.gray100};
 
     h1 {
       font-size: 2rem;
@@ -40,18 +40,18 @@ export const Article = styled.article`
       margin-top: 2.5rem;
       margin-bottom: 1.8rem;
 
-      color: var(--gray-800);
+      color: ${props => props.theme.color.gray800};
     }
 
     a {
-      color: var(--purple-300);
+      color: ${props => props.theme.color.purple300};
     }
   }
 
   div.borderDiv {
     width: 100%;
     height: 2px;
-    background: var(--purple-300);
+    background: ${props => props.theme.color.purple300};
 
     margin-bottom: 2rem;
   }
@@ -59,7 +59,7 @@ export const Article = styled.article`
   .description {
     margin-top: 2rem;
     line-height: 1.9rem;
-    color: var(--gray-600);
+    color: ${props => props.theme.color.gray500};
     margin: 1rem 0;
 
     text-align: justify;

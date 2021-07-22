@@ -7,7 +7,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  :root {
+  /* :root {
     --white: #fff;
 
     --gray-50: #f7f8fa;
@@ -33,7 +33,7 @@ export default createGlobalStyle`
     --facebook: #2c46a3;
     --instagram: #d72c74;
     
-  }
+  } */
 
   
 @media (max-width: 1080px) {
@@ -49,7 +49,7 @@ export default createGlobalStyle`
 }
 
 body {
-  background: var(--gray-100);
+  background: ${props => props.theme.color.bg};
 }
 
 body,
@@ -57,7 +57,7 @@ input,
 textarea,
 button {
   font: 500 1rem Inter, sans-serif;
-  color: var(--gray-800);
+  color: ${props => props.theme.color.gray800};
 }
 
 h1,
@@ -68,7 +68,7 @@ h5,
 h6 {
   font-weight: 600;
   font-family: Lexend, sans-serif;
-  color: var(--gray-800);
+  color: ${props => props.theme.color.gray800};
 }
 
 h1 {
@@ -84,7 +84,7 @@ button {
 }
 
 article {
-  background: var(--gray-50);
+  background: ${props => props.theme.color.gray50};
 }
 
 `;

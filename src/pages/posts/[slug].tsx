@@ -14,9 +14,9 @@ import { ImHome } from "react-icons/im";
 import { MdDateRange } from "react-icons/md";
 import { BiUser } from "react-icons/bi";
 
-import { Article } from '../../styles/newsStyles';
+import { Article } from '../../styles/pages/postStyles';
 
-export default function news({ post }) {
+export default function posts({ post }) {
   return (
     <>
       <Head>

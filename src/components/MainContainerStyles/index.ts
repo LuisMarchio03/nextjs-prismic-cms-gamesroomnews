@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.main`
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 70% 30%;
 
   @media (max-width: 1180px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .buttonNextPageContainer {

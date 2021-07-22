@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AsideContainer = styled.aside`
-  width: 60%;
+  width: 100%;
   margin: 3rem 0;
 
   @media (max-width: 1180px) {
@@ -29,7 +29,7 @@ export const AsideContainer = styled.aside`
       cursor: pointer;
 
       &.discord {
-        color: var(--discord);
+        color: ${props => props.theme.color.discord};
 
         transition: filter 0.5s;
 
@@ -39,7 +39,7 @@ export const AsideContainer = styled.aside`
       }
 
       &.instagram {
-        color: var(--instagram);
+        color: ${props => props.theme.color.instagram};
 
         transition: filter 0.5s;
 
@@ -49,7 +49,7 @@ export const AsideContainer = styled.aside`
       }
 
       &.facebook {
-        color: var(--facebook);
+        color: ${props => props.theme.color.facebook};
 
         transition: filter 0.5s;
 

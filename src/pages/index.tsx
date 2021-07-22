@@ -68,16 +68,16 @@ export default function Home({ allEpisodes, postsPagination }) {
       {posts.map((post) => {
         return (
           <CardContainer key={post.id}>
-            <Link href={`/news/${post.uid}`}>
+            <Link href={`/posts/${post.uid}`}>
               <h2>{post.data.title[0].text}</h2>
             </Link>
-            <Link href={`/news/${post.uid}`}>
+            <Link href={`/posts/${post.uid}`}>
               <img
                 src={`${post.data.thumbnail.url}`}
                 alt={post.data.title[0].text}
               />
             </Link>
-            <Link href={`/news/${post.uid}`}>
+            <Link href={`/posts/${post.uid}`}>
               <p>{post.data.content[0].text.substr(0, 300)}...</p>
             </Link>
           </CardContainer>

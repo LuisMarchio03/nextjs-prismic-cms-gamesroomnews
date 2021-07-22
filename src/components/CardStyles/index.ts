@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CardContainer = styled.section`
-  width: 70%;
+  width: 75%;
   margin-top: 3rem;
   margin-bottom: 3rem;
   padding-left: 5rem;
@@ -24,7 +24,7 @@ export const CardContainer = styled.section`
     transition: 0.5s;
 
     &:hover {
-      color: var(--purple-400);
+      color: ${props => props.theme.color.purple400};
     }
   }
 
@@ -53,7 +53,7 @@ export const CardContainer = styled.section`
     transition: 0.5s;
 
     &:hover {
-      color: var(--gray-300);
+      color: ${props => props.theme.color.gray300};
     }
   }
 `;
