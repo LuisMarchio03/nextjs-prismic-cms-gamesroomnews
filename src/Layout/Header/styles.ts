@@ -21,6 +21,10 @@ export const HeaderContainer = styled.header`
     padding: 0.25rem 0.25rem 2rem;
     border-left: 1px solid ${props => props.theme.color.gray200};
 
+    font-family: 'Zen Tokyo Zoo', cursive;
+    font-weight: 400;
+    font-size: 1.7rem;
+
     @media (max-width: 860px) {
       margin: 15px 0;
       margin-left: 0;

@@ -24,7 +24,7 @@ export function Header({ toggleTheme, theme }) {
           <strong>Games Room News</strong>
         </Link>
       </Logo>
-      <p>Bem vindo(a) ao universo gamer</p>
+      <p>bem vindo(a) ao universo gamer</p>
       <span>{currentDate}</span>
       <Switch
         onChange={toggleTheme}
